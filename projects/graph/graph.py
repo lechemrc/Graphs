@@ -26,6 +26,8 @@ class Graph:
         Get all neighbors (edges) of a vertex.
         """
         pass  # TODO
+        # check if vertex is in edges
+        # add neighbor of other value in edges
 
     def bft(self, starting_vertex):
         """
@@ -39,7 +41,27 @@ class Graph:
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        ## make a stack of nodes to visit
+        stack = Stack()
+        stack.push(starting_vertex)
+
+        ## make a set to track visited nodes
+        visited = set()
+
+        ## while the stack isn't empty
+        while stack.size() > 0:
+        ### pop off top of stack, this is our current node
+            current_node = stack.pop()
+        ### if we have not visited, then let's:
+            if current_node not in visited:
+        #### mark as visited
+                visited.add(current_node)
+
+        #### get the vertex's neighbors
+                neighbors = current_node.neighbors
+        #### put the current node's neighbors on the stack
+                for neighbor in neighbors:
+                    stack.push(neighbor)
 
     def dft_recursive(self, starting_vertex):
         """
@@ -56,7 +78,27 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        ## make a queue
+        q = Queue()
+        ## prime the pump with the first node
+        q.enqueue(starting_vertex)
+
+        ## make a set to track visited nodes
+        visited = set()
+
+        ## while the queue isn't empty:
+        while q.size() > 0:
+        ## dequeue from front of queue, this is our current node
+            current_node = q.dequeue()
+        ### if we have not visited, let's:
+            if current_node not in visited:
+        #### mark as visited
+                visited.add(current_node)
+        #### get the vertex's neighbors
+                neighbors = starting_vertex.neighbors
+        #### put them in the queue
+                for neighbor in neighbors:
+                    q.enqueue(neighbor)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
